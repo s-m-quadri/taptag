@@ -9,7 +9,6 @@ TapTag is a smart RFID-based attendance system that uses an ESP32 microcontrolle
 - WebSockets Integration: Provides real-time updates.
 - Flutter App: Displays attendance logs and statistics.
 
----
 ## Hardware Requirements
 - ESP32 Development Board
 - RFID RC522 Module
@@ -17,11 +16,9 @@ TapTag is a smart RFID-based attendance system that uses an ESP32 microcontrolle
 - 5V Power Supply
 - Wires & PCB (Optional)
 
----
 ## Software Requirements
 - TODO: List required software and libraries
 
----
 ## Wiring Diagram
 | RFID RC522 Pin | ESP32 Pin |
 | -------------- | --------- |
@@ -33,7 +30,6 @@ TapTag is a smart RFID-based attendance system that uses an ESP32 microcontrolle
 | GND            | GND       |
 | VCC            | 3.3V      |
 
----
 ## Setup & Installation
 1. Install Arduino IDE and add ESP32 board support.
 2. Install Required Libraries:
@@ -44,20 +40,16 @@ TapTag is a smart RFID-based attendance system that uses an ESP32 microcontrolle
    - TODO: Provide Flutter setup steps
 6. Scan RFID Cards and check the app for real-time attendance updates.
 
----
 ## Flutter Integration
 1. TODO: Describe how to integrate Flutter with ESP32
 2. TODO: Explain how to handle WebSocket communication
 
----
 ## Contributing
 Feel free to fork this repository, improve it, and submit pull requests.
 
----
 ## License
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). Commercial use is prohibited, and all modifications must remain open-source.
 
----
 ## Contact
 For questions, reach out at **dev.smq@gmail.com**
 
