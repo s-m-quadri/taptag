@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env DEBUG=express:* DEBUG_COLORS=true nodemon src/index.ts",
     "build": "npx tsc",
+    "deploy": "npm run build && vercel --prod",
     "start": "node dist/index.js"
   },
   "repository": {
