@@ -5,7 +5,6 @@
 
 #define SS_PIN 5
 #define RST_PIN 22
-#define LED_PIN 2
 
 const char* apSSID = "ESP32_HOTSPOT";
 const char* apPassword = "12345678";
@@ -15,18 +14,15 @@ MFRC522 rfid(SS_PIN, RST_PIN);
 
 void setup() {
     Serial.begin(115200);
-    Serial.println("ESP32 RFID Reader Starting...");
+    Serial.println("[ESP32] Starting...");
     SPI.begin();
     rfid.PCD_Init();
-
-    // LED Setup
-    pinMode(LED_PIN, OUTPUT);
-    digitalWrite(LED_PIN, LOW);
+    Serial.print("[ESP32] RFID Version: ");
+    Serial.println(rfid.PCD_ReadRegister(MFRC522::VersionReg), HEX);
 
     // Start ESP32 as Access Point
     WiFi.softAP(apSSID, apPassword);
-    Serial.println("Hotspot Started!");
-    Serial.print("ESP32 IP: ");
+    Serial.print("[Hotspot] ESP32 IP: ");
     Serial.println(WiFi.softAPIP());
 
     // Start WebSocket Server
@@ -47,19 +43,15 @@ void loop() {
         if (i < rfid.uid.size - 1) cardUID += ":";
     }
 
-    Serial.println("Sending UID: " + cardUID);
+    Serial.println("[WebSocket] Sending UID: " + cardUID);
     webSocket.broadcastTXT(cardUID);
 
-    // LED Confirmation
-    digitalWrite(LED_PIN, HIGH); 
-    delay(500);
-    digitalWrite(LED_PIN, LOW);
     rfid.PICC_HaltA();
     rfid.PCD_StopCrypto1();
 }
 
 void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length) {
     if (type == WStype_TEXT) {
-        Serial.printf("Received from client: %s\n", payload);
+        Serial.printf("[WebSocket] Received from client: %s\n", payload);
     }
 }
