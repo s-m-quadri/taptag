@@ -34,16 +34,17 @@ export async function createEntity(req: express.Request, res: express.Response) 
   let email = req.body.email?.toString().trim();
   let rawPassword = req.body.password?.toString().trim();
   let type = req.body.type?.toString().trim().toLowerCase();
+  let isVerified = req.body.verified ?? false;
   if (!mobileNo) return genericRes.badRequest(req, res, "Invalid mobile number.");
   if (!name) return genericRes.badRequest(req, res, "Must provide name.");
   if (!email) return genericRes.badRequest(req, res, "Invalid email.");
   if (!rawPassword) return genericRes.badRequest(req, res, "Must provide password.");
   if (!type) return genericRes.badRequest(req, res, "Invalid user type.");
-  if (type == "admin") return genericRes.badRequest(req, res, "Cannot update user type to admin.");
+  if (type == "admin") return genericRes.badRequest(req, res, "Cannot create user type as admin.");
 
   // Form new user data
   let password = await auth.getPasswordHash(rawPassword);
-  let newUserData = { mobileNo, name, email, password, type };
+  let newUserData = { mobileNo, name, email, password, type, verified: isVerified };
 
   // Check for duplicate verified user
   const duplicate = await UserModel.findOne({ mobileNo, verified: true });

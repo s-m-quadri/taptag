@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Authorization routes, with rate limiter.
 router.post("/", auth.rate6per1min, authController.authenticateUser);
-router.post("/login", auth.rate3per5min, authController.loginUser);
-router.post("/register", auth.rate3per5min, authController.registerUser);
+router.post("/login", auth.rate6per1min, authController.loginUser);
+router.post("/register", auth.rate6per1min, authController.registerUser);
 
 export default router;

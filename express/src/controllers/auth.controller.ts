@@ -54,7 +54,7 @@ export async function registerUser(req: express.Request, res: express.Response) 
     if (!newUser) throw Error("Failed to create new user!");
 
     const sanitizedUser = { ...newUser.toObject(), password: "" };
-    return genericRes.successOk(req, res, sanitizedUser, "Sent OTP via mail and SMS!");
+    return genericRes.successOk(req, res, sanitizedUser, "Successfully registered user, verification pending!");
   } catch (error) {
     return genericRes.unauthorized(req, res, (error as Error).message);
   }
