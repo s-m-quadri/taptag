@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "556754972247",
+    "project_id": "taptag-db",
+    "storage_bucket": "taptag-db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556754972247:android:d9805e91358c3a8b8e7d12",
+        "android_client_info": {
+          "package_name": "me.s_m_quadri.taptag"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa5Vs61q2Pl4E4Gvc5H3IW7aHGPEwFJtY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
