@@ -2,7 +2,7 @@
 
 TapTag is a smart RFID-based attendance system that uses an ESP32 microcontroller, RFID module, and a Flutter app for real-time attendance tracking over Wi-Fi.
 
-## Features
+## 📌 Features
 - **RFID-Based Authentication:** Uses RFID cards/tags to register attendance.
 - **ESP32 + RFID:** Reads RFID tags and sends data wirelessly.
 - **Wi-Fi Communication:** Runs as a Wi-Fi hotspot to communicate with the Flutter app.
@@ -10,27 +10,33 @@ TapTag is a smart RFID-based attendance system that uses an ESP32 microcontrolle
 - **Flutter App:** Displays attendance logs and statistics.
 - **Express Backend:** Manages user data, attendance logs, and authentication using TypeScript and Mongoose.
 
-## Project Structure
+## 📌 Project Structure
 This repository contains three main folders:
 - **`arduino`** - Contains the `.ino` file for ESP32 firmware.
 - **`flutter`** - Contains the Flutter application for Web, Windows, and Android (in development).
 - **`express`** - Contains the backend source code using TypeScript, Mongoose, and Express.js.
 
-## Hardware Requirements
+## 📌 Documentation
+Postman API Documentation: [**TapTag Postman Collection**](https://www.postman.com/s-m-quadri/taptag)
+
+
+## 📌 Requirements
+
+### Hardware
 - **ESP32 Development Board**
 - **RFID RC522 Module**
 - **RFID Cards/Tags**
 - **5V Power Supply**
 - **Wires & PCB (Optional)**
 
-## Software Requirements
+### Software
 - **Arduino IDE** (with ESP32 board support)
 - **Flutter SDK** (for app development)
 - **Node.js & npm** (for backend development)
 - **MongoDB** (for data storage)
 - **Postman** (for API testing)
 
-## Wiring Diagram
+## 📌 Wiring Diagram
 Here is the wiring sequence for the RFID RC522 sensor (including **IRQ**, though it's not typically used in SPI mode):  
 
 | **RFID RC522 Pin** | **ESP32 Pin**   |
@@ -44,7 +50,7 @@ Here is the wiring sequence for the RFID RC522 sensor (including **IRQ**, though
 | **RST**            | 22              |
 | **3.3V**           | 3.3V            |
 
-## Setup & Installation
+## 📌 Setup & Installation
 ### ESP32 Setup
 1. Install Arduino IDE and add **ESP32 board support**.
 2. Install the required libraries listed above.
@@ -80,14 +86,11 @@ Here is the wiring sequence for the RFID RC522 sensor (including **IRQ**, though
    flutter run
    ```
 
-## API & Postman Collection
-Postman API Documentation: [**TapTag Postman Collection**](https://www.postman.com/s-m-quadri/taptag)
-
-## Contributing
+## 📌 Contributing
 Feel free to fork this repository, improve it, and submit pull requests.
 
-## License
+## 📌 License
 This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**. Commercial use is prohibited, and all modifications must remain open-source.
 
-## Contact
+## 📌 Contact
 For questions, reach out at **dev.smq@gmail.com**
