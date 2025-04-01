@@ -19,7 +19,7 @@ export async function loginUser(req: express.Request, res: express.Response) {
     if (email) query = { ...query, email };
     const user = await UserModel.findOne(query);
     if (!user) throw Error("User not found!");
-    if (user.suspended === true) throw Error("User is suspended! Contact support for more information. support@hevifi.com");
+    if (user.suspended === true) throw Error("User is suspended! Contact support for more information. dev.smq@gmail.com");
 
     // Password-based auth
     if (user.verified === false) throw Error("User not verified! Complete the registration process first.");
@@ -74,7 +74,7 @@ export async function authenticateUser(req: express.Request, res: express.Respon
     // Get the user
     const user = await UserModel.findOne(query);
     if (!user) throw Error("User not found!");
-    if (user.suspended === true) throw Error("User is suspended! Contact support for more information. support@hevifi.com");
+    if (user.suspended === true) throw Error("User is suspended! Contact support for more information. dev.smq@gmail.com");
 
     // Authenticate user by
     // 1. Validating tokenSMS -> otpSMS, and tokenMail -> otpMail
