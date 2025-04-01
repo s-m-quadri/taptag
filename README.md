@@ -20,15 +20,18 @@ TapTag is a smart RFID-based attendance system that uses an ESP32 microcontrolle
 - TODO: List required software and libraries
 
 ## Wiring Diagram
-| RFID RC522 Pin | ESP32 Pin |
-| -------------- | --------- |
-| SDA            | 5 (SS)    |
-| RST            | 22 (RST)  |
-| MOSI           | 23 (MOSI) |
-| MISO           | 19 (MISO) |
-| SCK            | 18 (SCK)  |
-| GND            | GND       |
-| VCC            | 3.3V      |
+Here is the wiring sequence with respect to the RFID RC522 sensor, including **IRQ** (though it's not typically used in SPI mode):  
+
+| **RFID RC522 Pin** | **ESP32 Pin**  |  
+|--------------------|---------------|  
+| **SDA (SS)**      | 5              |  
+| **SCK**           | 18             |  
+| **MOSI**          | 23             |  
+| **MISO**          | 19             |  
+| **IRQ**           | (Not connected) |  
+| **GND**           | GND            |  
+| **RST**           | 22             |  
+| **3.3V**          | 3.3V           |  
 
 ## Setup & Installation
 1. Install Arduino IDE and add ESP32 board support.
