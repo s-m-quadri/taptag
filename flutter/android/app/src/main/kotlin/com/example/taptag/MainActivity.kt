@@ -1,4 +1,4 @@
-package me.s_m_quadri.taptag
+package com.example.taptag
 
 import io.flutter.embedding.android.FlutterActivity
 
