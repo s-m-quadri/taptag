@@ -7,6 +7,7 @@ import connectDB from "./configurations/db.config";
 import env from "./configurations/env.config";
 import authRouter from "./routes/auth.router";
 import userRouter from "./routes/user.router";
+import readerRouter from "./routes/reader.router";
 import { createServer } from "http";
 
 // Express app
@@ -22,6 +23,7 @@ app.use(express.json());
 app.get("/", (_, res: any) => res.status(200).json({ msg: `Server is live in ${env.ENV}!` }));
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
+app.use("/reader", readerRouter);
 app.all("*", (req, res) => genericRes.pageNotFound(req, res));
 
 // Driver function
