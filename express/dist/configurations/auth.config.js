@@ -36,7 +36,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.rate3per5min = exports.rate30per1min = exports.rate6per1min = exports.rate1per1min = void 0;
+exports.rate3per5min = exports.rate15per1min = exports.rate6per2min = exports.rate1per1min = void 0;
 exports.getOTP = getOTP;
 exports.getPhrase = getPhrase;
 exports.getHash = getHash;
@@ -54,8 +54,8 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jwt = __importStar(require("jsonwebtoken"));
 const OTP_TIMEOUT = 60 * 60 * 1000;
 exports.rate1per1min = (0, express_rate_limit_1.default)({ windowMs: 60 * 1000, limit: 1, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
-exports.rate6per1min = (0, express_rate_limit_1.default)({ windowMs: 60 * 1000, limit: 6, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
-exports.rate30per1min = (0, express_rate_limit_1.default)({ windowMs: 60 * 1000, limit: 30, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
+exports.rate6per2min = (0, express_rate_limit_1.default)({ windowMs: 120 * 1000, limit: 6, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
+exports.rate15per1min = (0, express_rate_limit_1.default)({ windowMs: 60 * 1000, limit: 15, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
 exports.rate3per5min = (0, express_rate_limit_1.default)({ windowMs: 5 * 60 * 1000, limit: 3, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
 function getOTP() {
     let otp = Math.floor(100000 + Math.random() * 900000);

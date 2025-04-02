@@ -1,6 +1,6 @@
 {
   "name": "taptag-api",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Backend for TapTag Attendance System",
   "main": "dist/index.js",
   "scripts": {
@@ -41,7 +41,8 @@
     "express-rate-limit": "^7.4.0",
     "jsonwebtoken": "^9.0.2",
     "moment-timezone": "^0.5.45",
-    "mongoose": "^8.4.1"
+    "mongoose": "^8.4.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

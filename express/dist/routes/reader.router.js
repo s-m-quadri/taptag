@@ -37,11 +37,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const authController = __importStar(require("../controllers/auth.controller"));
+const auth_middleware_1 = require("../middleware/auth.middleware");
+const readerController = __importStar(require("../controllers/reader.controller"));
 const auth = __importStar(require("../configurations/auth.config"));
 const router = express_1.default.Router();
-// Authorization routes, with rate limiter.
-router.post("/", auth.rate6per2min, authController.authenticateUser);
-router.post("/login", auth.rate6per2min, authController.loginUser);
-router.post("/register", auth.rate6per2min, authController.registerUser);
+// Main routes
+router.get("/", auth.rate15per1min, auth_middleware_1.isAuthorized, readerController.getEntity);
+router.post("/", auth.rate3per5min, auth_middleware_1.isAuthorized, readerController.createEntity);
+router.put("/", auth.rate3per5min, auth_middleware_1.isAuthorized, readerController.updateEntity);
 exports.default = router;

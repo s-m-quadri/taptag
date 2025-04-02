@@ -38,12 +38,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const auth_middleware_1 = require("../middleware/auth.middleware");
-const userModel = __importStar(require("../controllers/user.controller"));
+const userController = __importStar(require("../controllers/user.controller"));
 const auth = __importStar(require("../configurations/auth.config"));
 const router = express_1.default.Router();
 // Main routes
-router.get("/", auth.rate30per1min, auth_middleware_1.isAuthorized, userModel.getEntity);
-router.post("/", auth.rate3per5min, auth_middleware_1.isAuthorized, userModel.createEntity);
-router.put("/", auth.rate3per5min, auth_middleware_1.isAuthorized, userModel.updateEntity);
-router.delete("/", auth.rate3per5min, auth_middleware_1.isAuthorized, userModel.deleteEntity);
+router.get("/", auth.rate15per1min, auth_middleware_1.isAuthorized, userController.getEntity);
+router.post("/", auth.rate3per5min, auth_middleware_1.isAuthorized, userController.createEntity);
+router.put("/", auth.rate3per5min, auth_middleware_1.isAuthorized, userController.updateEntity);
+router.delete("/", auth.rate3per5min, auth_middleware_1.isAuthorized, userController.deleteEntity);
 exports.default = router;
