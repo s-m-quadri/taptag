@@ -42,6 +42,7 @@ export async function registerUser(req: express.Request, res: express.Response) 
     const rawPassword = req.body.password?.toString().trim();
     const type = req.body.type?.toString().trim().toLowerCase() ?? "customer";
     if (!rawPassword) return genericRes.badRequest(req, res, "Must provide password.");
+    if (type == "admin") return genericRes.unauthorized(req, res, "You can't register as admin.");
     const password = await auth.getPasswordHash(rawPassword);
     const userDetails = { type, mobileNo, email, name, password };
 
