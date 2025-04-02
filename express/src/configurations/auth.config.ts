@@ -8,8 +8,8 @@ import * as jwt from "jsonwebtoken";
 const OTP_TIMEOUT = 60 * 60 * 1000;
 
 export const rate1per1min = rateLimit({ windowMs: 60 * 1000, limit: 1, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
-export const rate6per1min = rateLimit({ windowMs: 60 * 1000, limit: 6, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
-export const rate30per1min = rateLimit({ windowMs: 60 * 1000, limit: 30, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
+export const rate6per2min = rateLimit({ windowMs: 120 * 1000, limit: 6, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
+export const rate15per1min = rateLimit({ windowMs: 60 * 1000, limit: 15, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
 export const rate3per5min = rateLimit({ windowMs: 5 * 60 * 1000, limit: 3, handler: (req, res, next, options) => genericRes.tooManyRequest(req, res) });
 
 export function getOTP() {
