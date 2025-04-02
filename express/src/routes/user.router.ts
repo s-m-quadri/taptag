@@ -8,8 +8,8 @@ const router = express.Router();
 
 // Main routes
 router.get("/", auth.rate15per1min, isAuthorized, userController.getEntity);
-router.post("/", auth.rate3per5min, isAuthorized, userController.createEntity);
-router.put("/", auth.rate3per5min, isAuthorized, userController.updateEntity);
-router.delete("/", auth.rate3per5min, isAuthorized, userController.deleteEntity);
+router.post("/", auth.rate15per1min, isAuthorized, userController.createEntity);
+router.put("/", auth.rate15per1min, isAuthorized, userController.updateEntity);
+router.delete("/", auth.rate15per1min, isAuthorized, userController.deleteEntity);
 
 export default router;
