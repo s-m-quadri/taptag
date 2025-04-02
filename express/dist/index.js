@@ -45,6 +45,7 @@ const env_config_1 = __importDefault(require("./configurations/env.config"));
 const auth_router_1 = __importDefault(require("./routes/auth.router"));
 const user_router_1 = __importDefault(require("./routes/user.router"));
 const reader_router_1 = __importDefault(require("./routes/reader.router"));
+const tag_router_1 = __importDefault(require("./routes/tag.router"));
 const http_1 = require("http");
 // Express app
 const app = (0, express_1.default)();
@@ -58,6 +59,7 @@ app.get("/", (_, res) => res.status(200).json({ msg: `Server is live in ${env_co
 app.use("/auth", auth_router_1.default);
 app.use("/user", user_router_1.default);
 app.use("/reader", reader_router_1.default);
+app.use("/tag", tag_router_1.default);
 app.all("*", (req, res) => genericRes.pageNotFound(req, res));
 // Driver function
 async function main() {

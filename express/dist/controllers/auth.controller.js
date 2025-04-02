@@ -89,6 +89,8 @@ async function registerUser(req, res) {
         const type = (_f = (_e = req.body.type) === null || _e === void 0 ? void 0 : _e.toString().trim().toLowerCase()) !== null && _f !== void 0 ? _f : "customer";
         if (!rawPassword)
             return genericRes.badRequest(req, res, "Must provide password.");
+        if (type == "admin")
+            return genericRes.unauthorized(req, res, "You can't register as admin.");
         const password = await auth.getPasswordHash(rawPassword);
         const userDetails = { type, mobileNo, email, name, password };
         // Check for duplicate verified user

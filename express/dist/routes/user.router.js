@@ -43,7 +43,7 @@ const auth = __importStar(require("../configurations/auth.config"));
 const router = express_1.default.Router();
 // Main routes
 router.get("/", auth.rate15per1min, auth_middleware_1.isAuthorized, userController.getEntity);
-router.post("/", auth.rate3per5min, auth_middleware_1.isAuthorized, userController.createEntity);
-router.put("/", auth.rate3per5min, auth_middleware_1.isAuthorized, userController.updateEntity);
-router.delete("/", auth.rate3per5min, auth_middleware_1.isAuthorized, userController.deleteEntity);
+router.post("/", auth.rate15per1min, auth_middleware_1.isAuthorized, userController.createEntity);
+router.put("/", auth.rate15per1min, auth_middleware_1.isAuthorized, userController.updateEntity);
+router.delete("/", auth.rate15per1min, auth_middleware_1.isAuthorized, userController.deleteEntity);
 exports.default = router;

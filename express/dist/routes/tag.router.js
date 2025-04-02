@@ -38,11 +38,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const auth_middleware_1 = require("../middleware/auth.middleware");
-const readerController = __importStar(require("../controllers/reader.controller"));
+const tagController = __importStar(require("../controllers/tag.controller"));
 const auth = __importStar(require("../configurations/auth.config"));
 const router = express_1.default.Router();
 // Main routes
-router.get("/", auth.rate15per1min, auth_middleware_1.isAuthorized, readerController.getEntity);
-router.post("/", auth.rate15per1min, auth_middleware_1.isAuthorized, readerController.createEntity);
-router.put("/", auth.rate15per1min, auth_middleware_1.isAuthorized, readerController.updateEntity);
+router.get("/", auth.rate15per1min, auth_middleware_1.isAuthorized, tagController.getEntity);
+router.post("/", auth.rate15per1min, auth_middleware_1.isAuthorized, tagController.createEntity);
+router.put("/", auth.rate15per1min, auth_middleware_1.isAuthorized, tagController.updateEntity);
+router.delete("/", auth.rate15per1min, auth_middleware_1.isAuthorized, tagController.deleteEntity);
 exports.default = router;
