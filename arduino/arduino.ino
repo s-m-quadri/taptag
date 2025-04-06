@@ -3,13 +3,12 @@
 #include <SPI.h>
 #include <MFRC522.h>
 #include <AESLib.h>
-#include <Base64.h>
 
 #define SS_PIN 5
 #define RST_PIN 22
 
-// 32-byte key base64-encoded (for backend compatibility)
-const char* SECRET_KEY_BASE64 = "MDFlNTU3ZmEtODgxZS00MTBiLTg2ODAtNmI1YTYyNTg3ZGYz"; // = "01e557fa-881e-410b-8680-6b5a62587df3"
+#define SECRET_KEY "01e557fa-881e-410b-8680-6b5a62587df3"
+
 const char* apSSID = "RFID-Z4H8I2BPMPP";
 const char* apPassword = "7295aadb-2f76-495d-8792-2590cbd327e7";
 
@@ -19,20 +18,32 @@ AESLib aesLib;
 
 byte aesKey[32];
 
-void decodeSecretKey() {
-  char decodedKey[32]; // should match expected decoded size (32 bytes for AES-256)
-  int keyLen = base64_decode(decodedKey, SECRET_KEY_BASE64, strlen(SECRET_KEY_BASE64));
-  memcpy(aesKey, "01e557fa-881e-410b-8680-6b5a62587df3", keyLen);
-  Serial.printf("[AES] Decoded secret key, length = %d bytes\n", keyLen);
+void prepareAESKey() {
+  const char* fullKey = SECRET_KEY;
+  int idx = 0;
+
+  for (int i = 0; fullKey[i] != '\0' && idx < 32; i++) {
+    if (fullKey[i] != '-') {
+      aesKey[idx++] = fullKey[i];
+    }
+  }
+
+  while (idx < 32) aesKey[idx++] = '0';  // Pad if needed
+
+  Serial.print("[AES] Final 32-byte key: ");
+  for (int i = 0; i < 32; i++) {
+    Serial.print((char)aesKey[i]);
+  }
+  Serial.println();
 }
 
 void setup() {
   Serial.begin(115200);
   Serial.println("[ESP32] Starting...");
 
-  decodeSecretKey();
+  prepareAESKey();
 
-  SPI.begin(18, 19, 23, 5); // SCK, MISO, MOSI, SS
+  SPI.begin(18, 19, 23, 5);  // SCK, MISO, MOSI, SS
   delay(100);
   rfid.PCD_Init();
   delay(100);
@@ -73,11 +84,13 @@ String encrypt(String plainText) {
   int cipherLength = aesLib.get_cipher64_length(inputLength);
   char encrypted[cipherLength];
 
-  aesLib.encrypt64((byte*)plainText.c_str(), inputLength, encrypted, aesKey, 256);
+  byte iv[16] = { 0 };
+
+  aesLib.encrypt64((byte*)plainText.c_str(), inputLength, encrypted, aesKey, 256, iv);
   return String(encrypted);
 }
 
-void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length) {
+void webSocketEvent(uint8_t num, WStype_t type, uint8_t* payload, size_t length) {
   if (type == WStype_TEXT) {
     Serial.printf("[WebSocket] Received from client: %s\n", payload);
   }
