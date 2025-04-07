@@ -9,6 +9,7 @@ import authRouter from "./routes/auth.router";
 import userRouter from "./routes/user.router";
 import readerRouter from "./routes/reader.router";
 import tagRouter from "./routes/tag.router";
+import attendanceRouter from "./routes/attendance.router";
 import { createServer } from "http";
 
 // Express app
@@ -26,6 +27,7 @@ app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/reader", readerRouter);
 app.use("/tag", tagRouter);
+app.use("/attendance", attendanceRouter);
 app.all("*", (req, res) => genericRes.pageNotFound(req, res));
 
 // Driver function
