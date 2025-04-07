@@ -43,6 +43,7 @@ const genericRes = __importStar(require("./generic.controller"));
 const reader_model_1 = __importDefault(require("../models/reader.model"));
 const access_model_1 = __importDefault(require("../models/access.model"));
 const uuid_1 = require("uuid");
+const crypto_1 = __importDefault(require("crypto"));
 const excludeSensitiveFields = "-secret -__v -createdAt -updatedAt";
 async function getEntity(req, res) {
     var _a, _b, _c;
@@ -83,12 +84,14 @@ async function createEntity(req, res) {
     // Ensure requirements and create reader
     let name = (_a = req.body.name) === null || _a === void 0 ? void 0 : _a.toString().trim().toUpperCase();
     let description = (_b = req.body.description) === null || _b === void 0 ? void 0 : _b.toString().trim();
+    const keyBuffer = crypto_1.default.randomBytes(32);
+    const secretKey = keyBuffer.toString('base64');
     const newReader = await reader_model_1.default.create({
         name,
         description,
         ssid: `RFID-${Math.random().toString(36).substring(2, 14).toUpperCase()}`,
         password: (0, uuid_1.v4)(),
-        secret: (0, uuid_1.v4)(),
+        secret: secretKey,
     });
     if (!newReader)
         return genericRes.badRequest(req, res, "Failed to create reader.");

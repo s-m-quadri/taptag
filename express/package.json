@@ -1,6 +1,6 @@
 {
   "name": "taptag-api",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Backend for TapTag Attendance System",
   "main": "dist/index.js",
   "scripts": {
