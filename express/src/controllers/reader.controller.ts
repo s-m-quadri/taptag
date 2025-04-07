@@ -3,6 +3,7 @@ import * as genericRes from "./generic.controller";
 import ReaderModel from "../models/reader.model";
 import AccessLogModel from "../models/access.model";
 import { v4 as uuidv4 } from "uuid";
+import crypto from 'crypto';
 
 const excludeSensitiveFields = "-secret -__v -createdAt -updatedAt";
 
@@ -40,12 +41,14 @@ export async function createEntity(req: express.Request, res: express.Response) 
   // Ensure requirements and create reader
   let name = req.body.name?.toString().trim().toUpperCase();
   let description = req.body.description?.toString().trim();
+  const keyBuffer = crypto.randomBytes(32);
+  const secretKey = keyBuffer.toString('base64');
   const newReader = await ReaderModel.create({
     name,
     description,
     ssid: `RFID-${Math.random().toString(36).substring(2, 14).toUpperCase()}`,
     password: uuidv4(),
-    secret: uuidv4(),
+    secret: secretKey,
   });
   if (!newReader) return genericRes.badRequest(req, res, "Failed to create reader.");
   return genericRes.successOk(req, res, newReader, "Added reader successfully!");
