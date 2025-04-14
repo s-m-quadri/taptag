@@ -42,13 +42,8 @@ void setup() {
 
   decodeSecretKey();
 
-  SPI.begin(18, 19, 23, 5);  // SCK, MISO, MOSI, SS
-  randomSeed(esp_random());
-  delay(100);
-  rfid.PCD_Init();
-  delay(100);
-  Serial.print("[ESP32] RFID Version: ");
-  Serial.println(rfid.PCD_ReadRegister(MFRC522::VersionReg), HEX);
+  SPI.begin();
+  randomSeed(esp_random());  
 
   WiFi.softAP(apSSID, apPassword);
   Serial.print("[Hotspot] ESP32 IP: ");
@@ -60,6 +55,19 @@ void setup() {
 
 void loop() {
   webSocket.loop();
+
+  byte version = rfid.PCD_ReadRegister(MFRC522::VersionReg);
+  if (version == 0x00 || version == 0xFF) {
+    Serial.printf(".");
+    rfid.PCD_Init();
+    delay(100);
+    version = rfid.PCD_ReadRegister(MFRC522::VersionReg);
+    Serial.print(rfid.PCD_ReadRegister(MFRC522::VersionReg), HEX);
+    if (version == 0xB2) {
+      Serial.println("\n[RFID] RFID reader reinitialized successfully.");
+    }
+  }
+
 
   if (!rfid.PICC_IsNewCardPresent()) return;
   if (!rfid.PICC_ReadCardSerial()) return;
