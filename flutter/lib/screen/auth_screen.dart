@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:taptag/model/theme.model.dart';
 import 'package:taptag/model/user.model.dart';
@@ -49,33 +50,78 @@ class _AuthScreenState extends State<AuthScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Mobile No'),
-                onSaved: (val) => mobileNo = val!.trim(),
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            SizedBox(height: 50),
+            Icon(Icons.shield_outlined, size: 150, color: Theme.of(context).colorScheme.primary),
+            const SizedBox(height: 10),
+            Text(
+              "Login",
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                fontSize: 42,
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
               ),
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Password'),
-                obscureText: true,
-                onSaved: (val) => password = val!.trim(),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Mobile Number',
+                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                prefixIcon: Icon(Icons.phone_outlined),
               ),
-              const SizedBox(height: 20),
-              isLoading
-                  ? const CircularProgressIndicator()
-                  : ElevatedButton(onPressed: _login, child: const Text('Login')),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterScreen()));
-                },
-                child: const Text("Don't have an account? Register"),
+              maxLength: 10,
+              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value == null || !RegExp(r'^[0-9]{10,10}$').hasMatch(value)) {
+                  return 'Enter a valid 10-digit mobile number';
+                }
+                return null;
+              },
+              onChanged: (value) => mobileNo = value.trim(),
+            ),
+            const SizedBox(height: 10),
+            TextFormField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                prefixIcon: Icon(Icons.key_outlined),
               ),
-            ],
-          ),
+              keyboardType: TextInputType.visiblePassword,
+              validator: (value) {
+                if (value == null || value.length < 6) {
+                  return 'Password must be at least 6 characters';
+                }
+                return null;
+              },
+              onChanged: (value) => password = value.trim(),
+            ),
+            const SizedBox(height: 20),
+            isLoading
+                ? const CircularProgressIndicator()
+                : FilledButton(
+                  onPressed: _login,
+                  style: ButtonStyle(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                    ),
+                  ),
+                  child: const Text('Login', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                ),
+            TextButton(
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterScreen())),
+              child: const Text(
+                "(WIP) Don't have an account? Register",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
         ),
       ),
     );
