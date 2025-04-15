@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _tabs = const [ProfileTab(), AttendanceStepperPage(), HistoryTab()];
+  final List<Widget> _tabs = const [ProfileTab(), HistoryTab(), AttendanceStepperPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -26,30 +26,29 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("TapTag"),
-        actions: [
-          IconButton(icon: const Icon(Icons.brightness_6), onPressed: () => themeProvider.toggleTheme()),
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              await Provider.of<UserProvider>(context, listen: false).logout();
-              if (!context.mounted) return;
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (_) => const AuthScreen()),
-                (route) => false,
-              );
-            },
-          ),
-        ],
+        titleSpacing: 0,
+        leading: IconButton(
+          icon: Icon(Icons.logout, color: Theme.of(context).colorScheme.primary),
+          onPressed: () async {
+            await Provider.of<UserProvider>(context, listen: false).logout();
+            if (!context.mounted) return;
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const AuthScreen()),
+              (route) => false,
+            );
+          },
+        ),
+        actions: [IconButton(icon: const Icon(Icons.brightness_6), onPressed: () => themeProvider.toggleTheme())],
       ),
       body: _tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (newIndex) => setState(() => _currentIndex = newIndex),
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-          BottomNavigationBarItem(icon: Icon(Icons.how_to_reg), label: "Attendance"),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: "History"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.view_list), label: "History"),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: "Take Attendance"),
         ],
       ),
     );
