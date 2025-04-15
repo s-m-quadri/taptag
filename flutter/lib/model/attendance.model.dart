@@ -80,6 +80,7 @@ class AttendanceProvider with ChangeNotifier {
       if (res.statusCode == 200) {
         final data = jsonDecode(res.body)['result'];
         _attendanceResults = List<AttendanceResult>.from(data.map((json) => AttendanceResult.fromJson(json)));
+        _attendanceResults.sort((a, b) => b.date.compareTo(a.date));
         notifyListeners();
       } else {
         debugPrint("⚠️ Server error: ${res.body}");

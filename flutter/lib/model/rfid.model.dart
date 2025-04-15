@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 final String baseUrl = 'https://api.taptag.s-m-quadri.me';
 
-class RFIDService with ChangeNotifier {
+class RFIDProvider with ChangeNotifier {
   List<WiFiAccessPoint> rfidNetworks = [];
   WebSocketChannel? _channel;
   List<String> offlineBuffer = [];

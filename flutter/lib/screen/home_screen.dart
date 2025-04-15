@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taptag/model/theme.model.dart';
-import 'package:taptag/screen/attendance_tab.dart';
-import 'package:taptag/screen/auth_screen.dart';
+import 'package:taptag/screen/tab_attendance_form.dart';
+import 'package:taptag/screen/login_screen.dart';
 import 'package:taptag/model/user.model.dart';
-import 'package:taptag/screen/history_tab.dart';
-import 'package:taptag/screen/profile_tab.dart';
+import 'package:taptag/screen/tab_history.dart';
+import 'package:taptag/screen/tab_profile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

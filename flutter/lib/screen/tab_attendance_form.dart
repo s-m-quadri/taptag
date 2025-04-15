@@ -5,7 +5,7 @@ import 'package:taptag/model/attendance.model.dart';
 import 'package:taptag/model/reader.model.dart';
 import 'package:taptag/model/user.model.dart';
 import 'package:taptag/model/theme.model.dart';
-import 'package:taptag/screen/rfid_screen.dart';
+import 'package:taptag/model/rfid.model.dart';
 
 class AttendanceStepperPage extends StatefulWidget {
   const AttendanceStepperPage({super.key});
@@ -23,7 +23,7 @@ class _AttendanceStepperPageState extends State<AttendanceStepperPage> {
   bool isSubmitting = false;
 
   Future<void> refresh() async {
-    final rfidService = Provider.of<RFIDService>(context, listen: false);
+    final rfidService = Provider.of<RFIDProvider>(context, listen: false);
     final readerProvider = Provider.of<ReaderProvider>(context, listen: false);
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     rfidService.scanRFIDNetworks();
@@ -47,7 +47,7 @@ class _AttendanceStepperPageState extends State<AttendanceStepperPage> {
   }
 
   void resetStepper() {
-    final rfidService = Provider.of<RFIDService>(context, listen: false);
+    final rfidService = Provider.of<RFIDProvider>(context, listen: false);
     rfidService.scannedRFIDs.clear();
     rfidService.disconnectWebSocket();
     selectedSSID = null;
@@ -57,7 +57,7 @@ class _AttendanceStepperPageState extends State<AttendanceStepperPage> {
   }
 
   Widget buildStepContent(int step) {
-    final rfidService = Provider.of<RFIDService>(context, listen: false);
+    final rfidService = Provider.of<RFIDProvider>(context, listen: false);
     final readerProvider = Provider.of<ReaderProvider>(context, listen: false);
 
     switch (step) {
@@ -171,7 +171,7 @@ class _AttendanceStepperPageState extends State<AttendanceStepperPage> {
 
       case 2:
         return isSubmitting
-            ? const Center(child: CircularProgressIndicator())
+            ? SizedBox(height: 14, width: 14, child: CircularProgressIndicator(strokeWidth: 5))
             : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -225,7 +225,7 @@ class _AttendanceStepperPageState extends State<AttendanceStepperPage> {
   }
 
   bool canContinue(int step) {
-    final rfidService = Provider.of<RFIDService>(context, listen: false);
+    final rfidService = Provider.of<RFIDProvider>(context, listen: false);
     switch (step) {
       case 0:
         return selectedSSID != null;
@@ -237,7 +237,7 @@ class _AttendanceStepperPageState extends State<AttendanceStepperPage> {
   }
 
   Future<void> handleStepContinue() async {
-    final rfidService = Provider.of<RFIDService>(context, listen: false);
+    final rfidService = Provider.of<RFIDProvider>(context, listen: false);
     final readerProvider = Provider.of<ReaderProvider>(context, listen: false);
     final attendanceProvider = Provider.of<AttendanceProvider>(context, listen: false);
     final userProvider = Provider.of<UserProvider>(context, listen: false);
@@ -248,7 +248,7 @@ class _AttendanceStepperPageState extends State<AttendanceStepperPage> {
     }
 
     if (currentStep == 2) {
-      setState(() => isSubmitting = true); // start loader
+      setState(() => isSubmitting = true);
 
       final reader = readerProvider.allReaders.firstWhere(
         (reader) => reader.ssid == selectedSSID,

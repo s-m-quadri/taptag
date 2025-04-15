@@ -40,7 +40,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text("TapTag | Authorization"),
         actions: [
           IconButton(
             icon: const Icon(Icons.brightness_6),
@@ -103,21 +103,22 @@ class _AuthScreenState extends State<AuthScreen> {
               onChanged: (value) => password = value.trim(),
             ),
             const SizedBox(height: 20),
-            isLoading
-                ? const CircularProgressIndicator()
-                : FilledButton(
-                  onPressed: _login,
-                  style: ButtonStyle(
-                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    ),
-                  ),
-                  child: const Text('Login', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            FilledButton(
+              onPressed: isLoading ? null : _login,
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                 ),
+              ),
+              child:
+                  isLoading
+                      ? SizedBox(height: 14, width: 14, child: CircularProgressIndicator(strokeWidth: 5))
+                      : const Text('Login', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            ),
             TextButton(
               onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterScreen())),
               child: const Text(
-                "(WIP) Don't have an account? Register",
+                "Don't have an account? Request access",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
