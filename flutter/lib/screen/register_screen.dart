@@ -110,15 +110,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             const SizedBox(height: 20),
 
-            // DropdownButtonFormField<String>(
-            //   value: type,
-            //   items:
-            //       ['student', 'teacher', 'parent', 'other'].map((role) {
-            //         return DropdownMenuItem(value: role, child: Text(role));
-            //       }).toList(),
-            //   onChanged: (val) => setState(() => type = val!),
-            //   decoration: const InputDecoration(labelText: 'Type'),
-            // ),
             DropdownButtonFormField<String>(
               value: type,
               items:

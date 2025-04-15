@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:taptag/model/attendance.model.dart';
 import 'package:taptag/model/reader.model.dart';
 import 'package:taptag/model/user.model.dart';
-import 'package:taptag/model/theme.model.dart';
 import 'package:taptag/model/rfid.model.dart';
 
 class AttendanceStepperPage extends StatefulWidget {
@@ -96,7 +95,7 @@ class _AttendanceStepperPageState extends State<AttendanceStepperPage> {
               );
 
               return ListTile(
-                title: Text("${reader.name ?? 'Unnamed'} (${net.ssid})"),
+                title: Text("${reader.name} (${net.ssid})"),
                 subtitle: Text(
                   reader.password != null ? "${reader.description ?? 'No Description'}" : "No password available",
                 ),
