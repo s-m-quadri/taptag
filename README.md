@@ -1,4 +1,4 @@
-![thumbnail](https://github.com/user-attachments/assets/5d814ab5-5c61-4122-9943-840d211c3417)
+[![thumbnail](https://github.com/user-attachments/assets/5d814ab5-5c61-4122-9943-840d211c3417)](https://www.youtube.com/watch?v=MczDsma9pwM)
 
 <div align="center">
    <h1>🪪 TapTag</h1>
