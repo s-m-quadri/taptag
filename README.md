@@ -1,14 +1,16 @@
 [![thumbnail](https://github.com/user-attachments/assets/5d814ab5-5c61-4122-9943-840d211c3417)](https://www.youtube.com/watch?v=MczDsma9pwM)
 
 <div align="center">
-   <h1>🪪 TapTag</h1>
+   <h1>Project <b><code>TapTag</code></b></h1>
    <p>TapTag is a smart attendance system that uses RFID technology to track attendance efficiently.</p>
-  <p><a href="https://github.com/s-m-quadri/taptag/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Report Bugs</a> · <a href="https://github.com/s-m-quadri/taptag/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Request Feature</a> · <a href="https://github.com/s-m-quadri/taptag/discussions/new?category=q-a">Ask Question</a> · <a href="https://github.com/Safouene1/support-palestine-banner/blob/master/Markdown-pages/Support.md">Support 🇵🇸 Palestine</a></p>
+   <p><a href="https://s-m-quadri.me/projects/taptag/">Homepage</a> · <a href="https://github.com/s-m-quadri/taptag">Repository</a> · <a href="https://drive.google.com/drive/folders/1Wyq6Eu7qnUKfx0ASCMx7n4zV-bv2xVl5?usp=sharing">Drive</a> · <a href="https://docs.google.com/presentation/d/1HC34gGQQH1iw78AKuE89IQDT_yYvO-Zc1dU2yfO2Eqs/edit?usp=sharing">Presentation</a> · <a href="https://www.youtube.com/watch?v=MczDsma9pwM">Video</a></p>
   <a href="https://github.com/s-m-quadri/taptag/releases"><img src="https://custom-icon-badges.demolab.com/github/v/tag/s-m-quadri/taptag?label=Version&labelColor=302d41&color=f2cdcd&logoColor=d9e0ee&logo=tag&style=for-the-badge" alt="GitHub Readme Profile Version"/></a>
   <a href="https://www.codefactor.io/repository/github/s-m-quadri/taptag"><img src="https://img.shields.io/codefactor/grade/github/s-m-quadri/taptag?label=CodeFactor&labelColor=302d41&color=8bd5ca&logoColor=d9e0ee&logo=codefactor&style=for-the-badge" alt="GitHub Readme Profile Code Quality"/></a>
   <a href="https://github.com/s-m-quadri/taptag/issues"><img src="https://custom-icon-badges.demolab.com/github/issues/s-m-quadri/taptag?label=Issues&labelColor=302d41&color=f5a97f&logoColor=d9e0ee&logo=issue&style=for-the-badge" alt="GitHub Readme Profile Issues"/></a>
   <a href="https://github.com/s-m-quadri/taptag/pull"><img src="https://custom-icon-badges.demolab.com/github/issues-pr/s-m-quadri/taptag?&label=Pull%20requests&labelColor=302d41&color=ddb6f2&logoColor=d9e0ee&logo=git-pull-request&style=for-the-badge" alt="GitHub Readme Profile PRs"/></a>
   <a href="https://github.com/s-m-quadri/taptag/graphs/contributors"><img src="https://custom-icon-badges.demolab.com/github/contributors/s-m-quadri/taptag?label=Contributors&labelColor=302d41&color=c9cbff&logoColor=d9e0ee&logo=people&style=for-the-badge"/></a>
+  <p><a href="https://github.com/s-m-quadri/taptag/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Report Bugs</a> · <a href="https://github.com/s-m-quadri/taptag/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Request Feature</a> · <a href="https://github.com/s-m-quadri/taptag/discussions/new?category=q-a">Ask Question</a> · <a href="https://github.com/Safouene1/support-palestine-banner/blob/master/Markdown-pages/Support.md">Support 🇵🇸 Palestine</a></p>
+
 </div>
 
 ## 📌 Features
